@@ -1,6 +1,7 @@
 package br.com.estoqueapi.estoqueapi.entities;
 
 import br.com.estoqueapi.estoqueapi.dtos.produto.ProdutoDTO;
+import br.com.estoqueapi.estoqueapi.exceptions.produtos.QuantidadeInvalidaException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,5 +49,14 @@ public class Produto {
     public void addQuantidade(Integer quantidade) {
         this.quantidade += quantidade;
         this.updated_at = Instant.now();
+    }
+
+    public void diminuirQuantidade(Integer quantidade) {
+        if (quantidade > this.quantidade) {
+            throw new QuantidadeInvalidaException();
+        } else {
+            this.quantidade -= quantidade;
+            this.updated_at = Instant.now();
+        }
     }
 }

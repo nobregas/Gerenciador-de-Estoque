@@ -44,6 +44,11 @@ public class ProdutoService {
         return produtoRepository.save(produtoEntity);
     }
 
+    public Produto save(Produto produto) {
+        return produtoRepository.save(produto);
+    }
+
+
     public Produto update(String id, ProdutoDTO produtoDTO) {
         Produto produtoEntity = findById(id);
 
@@ -55,6 +60,7 @@ public class ProdutoService {
         Produto produto = findById(id);
         produtoRepository.delete(produto);
     }
+
 
     private void atualizarCampos(Produto entity, ProdutoDTO dto) {
         if(!dto.nome().isBlank() && !entity.getNome().equals(dto.nome())) {

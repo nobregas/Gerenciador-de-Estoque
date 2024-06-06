@@ -1,7 +1,6 @@
 package br.com.estoqueapi.estoqueapi.exceptions.produtos;
 
 import br.com.estoqueapi.estoqueapi.exceptions.ExceptionMessage;
-import br.com.estoqueapi.estoqueapi.exceptions.categorias.CategoriaAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +19,17 @@ public class ProdutoExceptionHandler {
         return new ExceptionMessage(
                 HttpStatus.NOT_FOUND.value(),
                 "Produto não encontrado",
+                Instant.now()
+        );
+    }
+
+    @ResponseBody
+    @ExceptionHandler(QuantidadeInvalidaException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionMessage handleQuantidadeInvalidaException(QuantidadeInvalidaException ex) {
+        return new ExceptionMessage(
+                HttpStatus.BAD_REQUEST.value(),
+                "Quantidade inválida",
                 Instant.now()
         );
     }

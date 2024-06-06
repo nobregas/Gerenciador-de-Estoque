@@ -47,8 +47,8 @@ public class StockMovementController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public ResponseEntity<List<StockMovement>> obterPorId(@PathVariable MovementType type) {
-        return ResponseEntity.ok(stockMovementService.obterTodosPorTipo(type));
+    public ResponseEntity<List<StockMovement>> obterPorTipo(@PathVariable MovementType tipo) {
+        return ResponseEntity.ok(stockMovementService.obterTodosPorTipo(tipo));
     }
 
     //todo refatorar gets para somente mostrar o nome do produto.
